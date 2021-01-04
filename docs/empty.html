@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0051)https://travisa9.github.io/Busquejo/docs/empty.html -->
+<!-- saved from url=(0055)file:///C:/Users/ASUS/Desktop/Travis/Thocrat/empty.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
 <style type="text/css">
 	.par{border-radius:9px;
@@ -42,14 +42,14 @@
 	   box-shadow:         inset 0 0 10px #000000;}
 </style>
 
-<h1 class="par" contenteditable="true" style="text-align:center;">Empty Busquejo</h1>
+<h1 class="par" contenteditable="false" style="text-align:center;">Empty Busquejo</h1>
 <div id="talk" style="width:80%; margin: auto auto; padding-bottom: 50px;" onclick="select(event)">
 <!-- Begin -->
 
 
 
 <!-- End -->
-<h3 onclick="getLimit(event)" class="par" contenteditable="true">Name your task and set a time (0:02) ...the timer will automatically work when this is clicked!</h3><br><input type="checkbox"><label class="par" contenteditable="true" style="border: medium solid white;">Add boxes like this one to describe each thing that needs done. You can format the text as&nbsp;<b>bold</b>&nbsp;or&nbsp;<i>Italic</i>&nbsp;and you can also add lists:<br><ul><li>First do this.</li><li>Then that.</li><li>Finally...</li></ul>When this part of the task is finished you can minimize it by clicking the Checkbox in the upper left corner.<br><br>I plan to make the editor better in the future but it serves my needs for the time being.<br></label><br></div>
+<h3 onclick="getLimit(event)" class="par" contenteditable="false">Name your task and set a time (0:02) ...the timer will automatically work when this is clicked!</h3><br><input type="checkbox"><label class="par" contenteditable="false" style="border: medium solid white;">Add boxes like this one to describe each thing that needs done. You can format the text as&nbsp;<b>bold</b>&nbsp;or&nbsp;<i>Italic</i>&nbsp;and you can also add lists:<br><ul><li>First do this.</li><li>Then that.</li><li>Finally...</li></ul>When this part of the task is finished you can minimize it by clicking the Checkbox in the upper left corner.<br><br>I plan to make the editor better in the future but it serves my needs for the time being.<br></label><br></div>
 <script type="text/javascript">
 $ = (sel) => document.getElementById(sel);
 $$ = (sel) => document.getElementsByClassName(sel);
@@ -138,7 +138,7 @@ function myTimer() {
 	$("timer").innerHTML = Math.floor(seconds/60) + ":"  + Math.floor(seconds%60);
 	// $('timer').style.height = `${timeLeft}%`
 	var unit = 100/limit
-	var percent = Math.floor((limit-d)*unit)
+	var percent =(limit-d)*unit
 	var pctLeft = 100-Math.floor((limit-d)*unit)
 	$('timer').style.height = `${percent}%`
 
@@ -165,13 +165,13 @@ function getLimit(event){
 
 <div style="position:fixed; left:10px; bottom:100px;">
 <div style="width:50px; height:300px; position:relative; display:inline-block; border-radius:9px; border:medium solid #7dd6f1; overflow:hidden;">
-		<div id="timer" style="width: 100%; height: 0%; background: rgb(128, 21, 0); position: absolute; bottom: 0px; left: 0px; text-align: center; color: white;">-5:-25</div>
+		<div id="timer" style="width: 100%; height: 60.3317%; background: rgb(98, 128, 0); position: absolute; bottom: 0px; left: 0px; text-align: center; color: white;">1:12</div>
 </div><br>
 </div>
 
 <div style="position:fixed; left:10px; bottom:10px;">
-	<button id="togg" onclick="toggle()" style="background: rgb(255, 101, 101);">Edit</button>
-	<div id="editbox" style="display: inline-block; border-radius: 5px; background: rgb(51, 51, 136); padding: 5px; border: 2px solid steelblue;">	
+	<button id="togg" onclick="toggle()" style="background: lightblue;">Edit</button>
+	<div id="editbox" style="display: none; border-radius: 5px; background: rgb(51, 51, 136); padding: 5px; border: 2px solid steelblue;">	
 		<button onclick="subheading()">Task</button> 
 		<button onclick="paragraph()">Box</button>
 		<span> || </span>
