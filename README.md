@@ -10,3 +10,11 @@ I origionally started making this to have better control over how my talk outlin
 Due to the pandemic Many are having schedule and time keeping troubles, so I got to thinking that this might be useful to make a schedule that can actually help keep time for you. 
 
 I plan to make some improvements, but feel free to recommend changes if you like.
+
+## Wishlist:
+
+ * Time-Snapping: Add the ability to snap the timer to the system clock for a more rigid schedule.
+ 
+ * Better editor with more options.
+ 
+ * Audible alarm.
