@@ -1,1 +1,185 @@
-<>
+<!DOCTYPE html>
+<!-- saved from url=(0055)file:///C:/Users/ASUS/Desktop/Travis/Thocrat/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<style type="text/css">
+	.par{border-radius:9px;
+		width: 100%
+	   -moz-box-shadow:    inset 0 0 10px #000000;
+	   -webkit-box-shadow: inset 0 0 10px #000000;
+	   box-shadow:         inset 0 0 10px #000000;
+	   min-width: 150px;
+	   min-height: 20px;
+	}
+	body{color:#efefef;
+		background:#151515;
+		font-family: "Liberation Serif";
+		font-weight: lighter;
+	}
+	label{ display:inline-block;
+		font-size:22px;
+		text-indent: 50px;
+		margin-bottom: 10px;
+		padding:8px;
+		transition: all .5s;
+		vertical-align: top;
+	}
+	input[type=checkbox]:checked + label{
+		color:grey; 
+		font-size:10px;
+	}
+	h3{margin:0; padding:0; background:#7dd6f1; color:black; text-align:center;}
+
+	*[contenteditable="true"] b, 
+	*[contenteditable="true"] i, 
+	*[contenteditable="true"] ul {border:thin solid lightblue; padding:1px;}
+
+	input{ position:relative; top:25px; left:5px;}
+	.box{border:thin solid #30a8d0; padding:8px; margin:10px; min-height:22px; background: #444;}
+
+
+	#timer{	   -moz-box-shadow:    inset 0 0 10px #000000;
+	   -webkit-box-shadow: inset 0 0 10px #000000;
+	   box-shadow:         inset 0 0 10px #000000;}
+</style>
+
+<h1 class="par" contenteditable="false" style="text-align:center;">Empty Busquejo</h1>
+<div id="talk" style="width:80%; margin: auto auto; padding-bottom: 50px;" onclick="select(event)">
+<!-- Begin -->
+
+
+
+<!-- End -->
+</div>
+<script type="text/javascript">
+$ = (sel) => document.getElementById(sel);
+$$ = (sel) => document.getElementsByClassName(sel);
+chooseOne = (a) => a[ Math.floor(Math.random()*a.length) ]
+//////////////////////////////////////////////////////////////////////////////
+var selected = ''
+//////////////////////////////////////////////////////////////////////////////
+var edit = false;
+function toggle(){
+	var par = $$("par")
+
+
+	if(edit){ edit = false;
+		$("editbox").style.display = "none"
+		$("togg").style.backgroundColor = "lightblue";
+		for (var i = par.length - 1; i >= 0; i--) {
+			par[i].contentEditable = "false"
+		}
+	}else { edit = true;
+		$("editbox").style.display = "inline-block"
+		$("togg").style.backgroundColor = "#ff6565";
+		for (var i = par.length - 1; i >= 0; i--) {
+			par[i].contentEditable = "true"
+		}		
+	}
+}
+//////////////////////////////////////////////////////////////////////////////
+function select(event){
+	var node = event.target;
+
+	// while(){}
+	if(node.tagName==="LABEL"){ node = event.target;
+	} else if(node.parentNode.tagName==="LABEL"){
+		node = node.parentNode;
+	} else if(node.parentNode.parentNode.tagName==="LABEL"){
+		node = node.parentNode.parentNode;
+	} else if(node.parentNode.parentNode.parentNode.tagName==="LABEL"){
+		node = node.parentNode.parentNode.parentNode;
+	} else {
+		return 0;
+	}
+
+		var par = $$("par")
+		for (var i = par.length - 1; i >= 0; i--) {
+			par[i].style.border=""
+		}
+		node.style.border="medium solid white"
+		selected = node;
+
+}
+//////////////////////////////////////////////////////////////////////////////
+function paragraph(){
+	var talk = $("talk")
+	talk.innerHTML += `<input type="checkbox"><label class="par" contenteditable="${edit}"></label><br>`
+	
+}
+//////////////////////////////////////////////////////////////////////////////
+function subheading(){
+	var talk = $("talk")
+	talk.innerHTML += `<h3 onclick="getLimit(event)" class="par" contenteditable="${edit}" >Subheading</h3><br>`
+	
+}
+//////////////////////////////////////////////////////////////////////////////
+function insert(thing){
+	if(thing=='list'){
+		var list = `<ul><li>One</li><li>Two</li><li>Three</li></ul><br>`
+		if(selected!='') selected.innerHTML += list;
+	}else if(thing=='text'){
+		var text = `<div class="box"></div><br>`		
+		if(selected!='') selected.innerHTML += text;
+	}else if(thing=='bold'){
+		if(selected!='') selected.innerHTML += `<b>something</b> ..`
+	}else if(thing=='italic'){
+		if(selected!='') selected.innerHTML += `<i>italic</i> ..`
+	}
+}
+//////////////////////////////////////////////////////////////////////////////
+var myVar = null, time = 0, limit = 0, min = 60000
+colors = [  '#008000','#148000','#278000','#3b8000','#4e8000','#628000','#758000',
+			'#807700','#806300','#805000','#803c00','#803c00','#802900','#801500']
+//////////////////////////////////////////////////////////////////////////////
+function myTimer() {
+	var d = new Date()-time;
+	if(limit == d){ clearInterval(myVar); }
+	var seconds = Math.floor((limit-d)/1000)
+	$("timer").innerHTML = Math.floor(seconds/60) + ":"  + Math.floor(seconds%60);
+	// $('timer').style.height = `${timeLeft}%`
+	var unit = 100/limit
+	var percent = Math.floor((limit-d)*unit)
+	var pctLeft = 100-Math.floor((limit-d)*unit)
+	$('timer').style.height = `${percent}%`
+
+	var color = colors[Math.floor((colors.length/100)*pctLeft)]
+	$('timer').style.backgroundColor = `${color}`
+}
+//////////////////////////////////////////////////////////////////////////////
+function start(){
+	time = new Date();
+	myVar = setInterval(myTimer ,100);
+}
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+function getLimit(event){
+	var str = event.target.innerHTML
+	var found = str.match(/\(([:\d]+)\)/g)[0].match(/\d+/g)
+	if(found.length==1){ limit = parseInt(found[0])*min;
+	}else{ limit = (parseInt(found[0])*min)*60 + parseInt(found[1])*min; }
+
+	start(myVar)
+}
+//////////////////////////////////////////////////////////////////////////////
+</script>
+
+<div style="position:fixed; left:10px; bottom:100px;">
+<div style="width:50px; height:300px; position:relative; display:inline-block; border-radius:9px; border:medium solid #7dd6f1; overflow:hidden;">
+		<div id="timer" style="width: 100%; height: 96%; background: rgb(0, 128, 0); position: absolute; bottom: 0px; left: 0px; text-align: center; color: white;">29:5</div>
+</div><br>
+</div>
+
+<div style="position:fixed; left:10px; bottom:10px;">
+	<button id="togg" onclick="toggle()" style="background: lightblue;">Edit</button>
+	<div id="editbox" style="display: none; border-radius: 5px; background: rgb(51, 51, 136); padding: 5px; border: 2px solid steelblue;">	
+		<button onclick="paragraph()">Paragraph</button>
+		<button onclick="subheading()">Subheading</button> <span> || </span>
+		<button onclick="insert(&#39;list&#39;)">List</button>
+		<button onclick="insert(&#39;text&#39;)">Text</button>
+		<button onclick="insert(&#39;bold&#39;)">Bold</button>
+		<button onclick="insert(&#39;italic&#39;)">Italic</button>
+	</div>
+</div>
+
+
+</body></html>
