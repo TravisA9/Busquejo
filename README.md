@@ -1,5 +1,5 @@
 # Busquejo
-Outline tool: can be used to give a talk or stay on schedule. 
+Outline tool: give a talk or stay on schedule. 
 
 [Click here](https://travisa9.github.io/Busquejo/docs/empty.html) for an empty document. Then make changes and save it (Ctrl+S) to your computer.
 
